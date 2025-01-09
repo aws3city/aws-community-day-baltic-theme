@@ -11,6 +11,32 @@
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-12 text-center sponsor-gold">
+                Venue Partner
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center row-cols-2 row-cols-lg-3">
+            {{ range .Page.Pages }}
+            {{ if in .Params.level "venue" }}
+                {{- $img := "" }}
+                {{- if fileExists (printf "%s/%s" .Path "img/logo.svg") }}
+                    {{- $img = (printf "%s%s" .RelPermalink "img/logo.svg") }}
+                {{- else if fileExists (printf "%s/%s" .Path "img/logo.png") }}
+                    {{- $img = (printf "%s%s" .RelPermalink "img/logo.png") }}
+                {{- else if fileExists (printf "%s/%s" .Path "img/logo.jpg") }}
+                    {{- $img = (printf "%s%s" .RelPermalink "img/logo.jpg") }}
+                {{- else }}
+                    {{- $img = (printf "%s%s" .Site.BaseURL "img/company.png") }}
+                {{- end }}
+            <div class="col p-3">
+                <a href="{{ .RelPermalink }}">
+                    <img src="{{ $img }}" class="mx-auto d-block" style="width: 75%" />
+                </a>
+            </div>
+            {{ end }}
+            {{ end }}
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-12 text-center sponsor-gold">
                 Gold
             </div>
         </div>
